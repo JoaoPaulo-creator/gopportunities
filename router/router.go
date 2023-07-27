@@ -12,11 +12,9 @@ Funções com o nome todo em caixa baixa, são funções/variáveis locais
 
 func Initialize() {
 	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello World",
-		})
-	})
+
+	// inicializando as rotas
+	initializeRouter(router)
 
 	router.Run(":3000")
 }
