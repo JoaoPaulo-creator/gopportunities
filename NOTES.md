@@ -15,3 +15,8 @@ suas funções serãos acessíveis pelos demais arquivos
 ### O que é um ponteiro
 
 Um ponteiro é o endereço de algo que está na memória, como o endereço de uma variável.
+
+### Body json
+
+Se algum campo for passado no json, no momento da request, e este campo nao foi definidio nas funcoes de request,
+o campo extra sera apenas ignorado, mantendo o app funcionando
