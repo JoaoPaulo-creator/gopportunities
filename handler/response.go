@@ -17,7 +17,7 @@ func sendError(ctx *gin.Context, statusCode int, msg string) {
 func sendSuccess(ctx *gin.Context, statusCode int, operation string, data interface{}) {
 	ctx.Header("Content-type", "application/json")
 	ctx.JSON(statusCode, gin.H{
-		"message": fmt.Sprintf("operation from handleer: %s successfull", operation), //Sprintf retorna uma string concatenada
+		"message": fmt.Sprintf("operation from handler: %s successfull", operation), //Sprintf retorna uma string concatenada
 		"data":    data,
 	})
 }
