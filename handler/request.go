@@ -1,6 +1,8 @@
 package handler
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type CreateOpeningRequest struct {
 	Role     string `json:"role"`
@@ -41,4 +43,21 @@ func (r *CreateOpeningRequest) Validate() error {
 	}
 
 	return nil
+}
+
+type UpdateOpeningRequest struct {
+	Role     string `json:"role"`
+	Company  string `json:"company"`
+	Location string `json:"location"`
+	IsRemote *bool  `json:"isRemote"`
+	RoleLink string `json:"roleLink"`
+	Salary   int64  `json:"salary"`
+}
+
+func (r *UpdateOpeningRequest) Validate() error {
+	if r.Role != "" || r.Company != "" || r.Location != "" || r.IsRemote != nil || r.RoleLink != "" || r.Salary > 0 {
+		return nil
+	}
+
+	return fmt.Errorf("al least one valid field must be provided")
 }
