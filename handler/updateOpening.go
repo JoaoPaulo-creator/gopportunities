@@ -16,7 +16,7 @@ import (
 // @Procedure json
 // @Param id query string true "Opening identification"
 // @Param request body CreateOpeningRequest true "Request body"
-// @Success 200 {object} CreateOpeningResponse
+// @Success 200 {object} UpdateOpeningResponse
 // @Failure 404 {object} ErrorResponse
 // @Failure 400 {object} ErrorResponse
 // @Failue 500 {object} ErrorResponse

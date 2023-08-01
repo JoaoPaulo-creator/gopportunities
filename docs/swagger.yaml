@@ -51,6 +51,13 @@ definitions:
       message:
         type: string
     type: object
+  handler.UpdateOpeningResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpeningResponse'
+      message:
+        type: string
+    type: object
   schemas.OpeningResponse:
     properties:
       company:
@@ -166,7 +173,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.CreateOpeningResponse'
+            $ref: '#/definitions/handler.UpdateOpeningResponse'
         "400":
           description: Bad Request
           schema:
