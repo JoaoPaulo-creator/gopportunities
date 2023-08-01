@@ -35,6 +35,22 @@ definitions:
       message:
         type: string
     type: object
+  handler.ListOpeningsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.OpeningResponse'
+        type: array
+      message:
+        type: string
+    type: object
+  handler.ShowOpeningResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpeningResponse'
+      message:
+        type: string
+    type: object
   schemas.OpeningResponse:
     properties:
       company:
@@ -82,7 +98,29 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
-      summary: DeleteOpening
+      summary: Delete an existing opening
+      tags:
+      - Openings
+    get:
+      consumes:
+      - application/json
+      description: shows a job opening
+      parameters:
+      - description: Opening identification
+        in: query
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ShowOpeningResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Show an opening
       tags:
       - Openings
     post:
@@ -105,7 +143,56 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
-      summary: CreateOpening
+      summary: Create an opening
+      tags:
+      - Openings
+    put:
+      consumes:
+      - application/json
+      description: updates a job opening
+      parameters:
+      - description: Opening identification
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateOpeningRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateOpeningResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Update an opening
+      tags:
+      - Openings
+  /openings:
+    get:
+      consumes:
+      - application/json
+      description: shows a list of existing openings
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListOpeningsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Show a list of openings
       tags:
       - Openings
 swagger: "2.0"

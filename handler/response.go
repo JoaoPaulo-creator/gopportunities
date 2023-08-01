@@ -23,9 +23,13 @@ func sendSuccess(ctx *gin.Context, statusCode int, operation string, data interf
 	})
 }
 
-type ErrorResponse struct {
-	Message   string `json:"message"`
-	ErrorCode string `json:"errorCode"`
+type ListOpeningsResponse struct {
+	Message string                    `json:"message"`
+	Data    []schemas.OpeningResponse `json:"data"`
+}
+type ShowOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
 }
 
 type CreateOpeningResponse struct {
@@ -33,7 +37,17 @@ type CreateOpeningResponse struct {
 	Data    schemas.OpeningResponse `json:"data"`
 }
 
+type UpdateOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
+}
+
 type DeleteOpeningResponse struct {
 	Message string                  `json:"message"`
 	Data    schemas.OpeningResponse `json:"data"`
+}
+
+type ErrorResponse struct {
+	Message   string `json:"message"`
+	ErrorCode string `json:"errorCode"`
 }
