@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 
+	"github.com/JoaoPaulo-creator/gopportunities/schemas"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,4 +21,14 @@ func sendSuccess(ctx *gin.Context, statusCode int, operation string, data interf
 		"message": fmt.Sprintf("operation from handler: %s successfull", operation), //Sprintf retorna uma string concatenada
 		"data":    data,
 	})
+}
+
+type ErrorResponse struct {
+	Message   string `json:"message"`
+	ErrorCode string `json:"errorCode"`
+}
+
+type CreateOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
 }

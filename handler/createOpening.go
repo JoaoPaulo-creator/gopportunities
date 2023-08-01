@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary CreateOpening
+// @Description creates a job opening
+// @Tags Openings
+// @Accept json
+// @Procedure json
+// @Param request body CreateOpeningRequest true "Request body"
+// @Success 201 {object} CreateOpeningResponse
+// @Failure 400 {object} ErrorResponse
+// @Failue 500 {object} ErrorResponse
+// @Router /opening [post]
 func CreateOpeningHandler(ctx *gin.Context) {
 	request := CreateOpeningRequest{} // as {} inicilizam minha struct
 

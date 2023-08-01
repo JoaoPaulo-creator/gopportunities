@@ -1,4 +1,82 @@
+definitions:
+  handler.CreateOpeningRequest:
+    properties:
+      company:
+        type: string
+      isRemote:
+        type: boolean
+      location:
+        type: string
+      role:
+        type: string
+      roleLink:
+        type: string
+      salary:
+        type: integer
+    type: object
+  handler.CreateOpeningResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpeningResponse'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      errorCode:
+        type: string
+      message:
+        type: string
+    type: object
+  schemas.OpeningResponse:
+    properties:
+      company:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        description: se o campo for falsy/vazio, etc, o campo sera omitido
+        type: string
+      id:
+        type: integer
+      isRemote:
+        type: boolean
+      location:
+        type: string
+      role:
+        type: string
+      roleLink:
+        type: string
+      salary:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /opening:
+    post:
+      consumes:
+      - application/json
+      description: creates a job opening
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateOpeningRequest'
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handler.CreateOpeningResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: CreateOpening
+      tags:
+      - Openings
 swagger: "2.0"
