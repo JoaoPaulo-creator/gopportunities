@@ -41,12 +41,21 @@ func CreateOpeningHandler(ctx *gin.Context) {
 		Salary:   request.Salary,
 	}
 
+	response := schemas.OpeningResponse{
+		Role:     request.Role,
+		Company:  request.Location,
+		Location: request.Location,
+		IsRemote: *request.IsRemote,
+		RoleLink: request.RoleLink,
+		Salary:   request.Salary,
+	}
+
 	if err := db.Create(&opening).Error; err != nil {
 		logger.Errorf("error on creating opening: %+v ", err.Error())
 		sendError(ctx, http.StatusInternalServerError, "an error occured while creating opening on database")
 		return
 	}
 
-	sendSuccess(ctx, http.StatusCreated, "create-opening", opening)
+	sendSuccess(ctx, http.StatusCreated, "create-opening", response)
 
 }

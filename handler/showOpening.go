@@ -34,6 +34,15 @@ func ShowOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	sendSuccess(ctx, http.StatusOK, "find-opening", openings)
+	response := schemas.OpeningResponse{
+		Role:     openings.Role,
+		Company:  openings.Location,
+		Location: openings.Location,
+		IsRemote: openings.IsRemote,
+		RoleLink: openings.RoleLink,
+		Salary:   openings.Salary,
+	}
 
+	fmt.Print(response)
+	sendSuccess(ctx, http.StatusOK, "find-opening", response)
 }
