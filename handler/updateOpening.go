@@ -76,5 +76,17 @@ func UpdateOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	sendSuccess(ctx, http.StatusOK, "update-opening", opening)
+	response := schemas.OpeningResponse{
+		CreatedAt: opening.CreatedAt,
+		DeletedAt: opening.DeletedAt.Time,
+		UpdatedAt: opening.UpdatedAt,
+		Role:      request.Role,
+		Company:   request.Location,
+		Location:  request.Location,
+		IsRemote:  *request.IsRemote,
+		RoleLink:  request.RoleLink,
+		Salary:    request.Salary,
+	}
+
+	sendSuccess(ctx, http.StatusOK, "update-opening", response)
 }

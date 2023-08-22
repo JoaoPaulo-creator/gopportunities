@@ -39,6 +39,18 @@ func DeleteOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	sendSuccess(ctx, http.StatusOK, "delete-opening", opening)
+	response := schemas.OpeningResponse{
+		CreatedAt: opening.CreatedAt,
+		DeletedAt: opening.DeletedAt.Time,
+		UpdatedAt: opening.UpdatedAt,
+		Role:      opening.Role,
+		Company:   opening.Location,
+		Location:  opening.Location,
+		IsRemote:  opening.IsRemote,
+		RoleLink:  opening.RoleLink,
+		Salary:    opening.Salary,
+	}
+
+	sendSuccess(ctx, http.StatusOK, "delete-opening", response)
 
 }

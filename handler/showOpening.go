@@ -35,12 +35,15 @@ func ShowOpeningHandler(ctx *gin.Context) {
 	}
 
 	response := schemas.OpeningResponse{
-		Role:     openings.Role,
-		Company:  openings.Location,
-		Location: openings.Location,
-		IsRemote: openings.IsRemote,
-		RoleLink: openings.RoleLink,
-		Salary:   openings.Salary,
+		CreatedAt: openings.CreatedAt,
+		DeletedAt: openings.DeletedAt.Time,
+		UpdatedAt: openings.UpdatedAt,
+		Role:      openings.Role,
+		Company:   openings.Location,
+		Location:  openings.Location,
+		IsRemote:  openings.IsRemote,
+		RoleLink:  openings.RoleLink,
+		Salary:    openings.Salary,
 	}
 
 	fmt.Print(response)

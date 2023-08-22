@@ -24,7 +24,23 @@ func ListOpeningsHandler(ctx *gin.Context) {
 		sendError(ctx, http.StatusInternalServerError, "error linsting openings")
 		return
 	}
+	response := []schemas.OpeningResponse{}
+	for _, opening := range openings {
+		openingResponse := schemas.OpeningResponse{
+			ID:        opening.ID,
+			CreatedAt: opening.CreatedAt,
+			UpdatedAt: opening.UpdatedAt,
+			DeletedAt: opening.DeletedAt.Time,
+			Role:      opening.Role,
+			Company:   opening.Company,
+			Location:  opening.Location,
+			IsRemote:  opening.IsRemote,
+			RoleLink:  opening.RoleLink,
+			Salary:    opening.Salary,
+		}
+		response = append(response, openingResponse)
+	}
 
-	sendSuccess(ctx, http.StatusOK, "list-openings", openings)
+	sendSuccess(ctx, http.StatusOK, "list-openings", response)
 
 }
